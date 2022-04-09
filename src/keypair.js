@@ -10,8 +10,15 @@ const Keypair = observer(() => {
   const handleSubmit = (e) => {
     e.preventDefault();
     window.test = keypairStoreInstance;
+    let selectedKeypair = [];
+    keypairStoreInstance.pairArray.map((pair) => {
+      if (pair.toggle) {
+        selectedKeypair = [...selectedKeypair, pair];
+        return selectedKeypair;
+      }
+    });
     const a = {
-      header: keypairStoreInstance.pairArray,
+      header: selectedKeypair,
     };
     console.log('Submit', a);
     console.log('Clicked');
@@ -58,7 +65,17 @@ const Keypair = observer(() => {
               return (
                 <tr>
                   <td>
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      checked={keypairStoreInstance.pairArray[i].toggle}
+                      onClick={(e) =>
+                        handleChange(
+                          pair.id,
+                          'toggle',
+                          !keypairStoreInstance.pairArray[i].toggle
+                        )
+                      }
+                    />
                   </td>
                   <td>
                     <input

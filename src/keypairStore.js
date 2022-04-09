@@ -21,7 +21,7 @@ class keypairStore {
 
   setPair(keyVal, description, value) {
     console.log('key, description, value', keyVal.value, description, value);
-    const newPair = new pair(v4(), '', '', '');
+    const newPair = new pair(v4(), true, '', '', '');
     console.log('newPair', newPair);
     this.pairArray.push(newPair);
     console.log('pairArray', this.pairArray);
@@ -38,7 +38,9 @@ class keypairStore {
           pair.value = val;
         } else if (property == 'description') {
           pair.description = val;
-        } else {
+        } else if (property == 'toggle') {
+          pair.toggle = val;
+        } else if (property == 'key') {
           pair.key = val;
         }
       }
