@@ -2,26 +2,29 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 import { observer } from 'mobx-react';
 import { useStore } from './hooks';
-import { storeInstance } from './formStore';
+import { keypairStoreInstance } from './keypairStore';
 
-const Headers = observer(() => {
-  console.log('storeInstance', storeInstance);
+const Keypair = observer(() => {
+  console.log('keypairStoreInstance', keypairStoreInstance);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.test = storeInstance;
+    window.test = keypairStoreInstance;
     const a = {
-      header: storeInstance.pairArray,
+      header: keypairStoreInstance.pairArray,
     };
     console.log('Submit', a);
     console.log('Clicked');
   };
 
   const handleChange = (id, property, value) => {
-    console.log('storeInstance.pairArray', storeInstance.pairArray);
+    console.log(
+      'keypairStoreInstance.pairArray',
+      keypairStoreInstance.pairArray
+    );
     console.log('id is');
     console.log(id);
-    storeInstance.updatePair(id, property, value);
+    keypairStoreInstance.updatePair(id, property, value);
   };
 
   return (
@@ -39,7 +42,7 @@ const Headers = observer(() => {
                 type="button"
                 value="Add"
                 onClick={(keyItemValue, descItemValue, valItemValue) =>
-                  storeInstance.setPair(
+                  keypairStoreInstance.setPair(
                     keyItemValue,
                     descItemValue,
                     valItemValue
@@ -50,8 +53,8 @@ const Headers = observer(() => {
           </tr>
         </thead>
         <tbody>
-          {storeInstance.pairArray &&
-            storeInstance.pairArray.map((pair, i) => {
+          {keypairStoreInstance.pairArray &&
+            keypairStoreInstance.pairArray.map((pair, i) => {
               return (
                 <tr>
                   <td>
@@ -65,7 +68,7 @@ const Headers = observer(() => {
                       onChange={(e) =>
                         handleChange(pair.id, 'key', e.target.value)
                       }
-                      value={storeInstance.pairArray[i].key}
+                      value={keypairStoreInstance.pairArray[i].key}
                     />
                   </td>
                   <td>
@@ -76,7 +79,7 @@ const Headers = observer(() => {
                       onChange={(e) =>
                         handleChange(pair.id, 'value', e.target.value)
                       }
-                      value={storeInstance.pairArray[i].value}
+                      value={keypairStoreInstance.pairArray[i].value}
                     />
                   </td>
                   <td>
@@ -87,14 +90,14 @@ const Headers = observer(() => {
                       onChange={(e) =>
                         handleChange(pair.id, 'description', e.target.value)
                       }
-                      value={storeInstance.pairArray[i].description}
+                      value={keypairStoreInstance.pairArray[i].description}
                     />
                   </td>
                   <td>
                     <input
                       type="button"
                       value="Delete"
-                      onClick={() => storeInstance.deletePair(pair.id)}
+                      onClick={() => keypairStoreInstance.deletePair(pair.id)}
                     />
                   </td>
                 </tr>
@@ -107,4 +110,4 @@ const Headers = observer(() => {
   );
 });
 
-export default Headers;
+export default Keypair;

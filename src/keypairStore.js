@@ -8,7 +8,7 @@ import {
 import { v4 } from 'uuid';
 import pair from './pair';
 
-class formStore {
+class keypairStore {
   pairArray = [];
 
   constructor() {
@@ -47,4 +47,4 @@ class formStore {
   }
 }
 
-export const storeInstance = new formStore();
+export const keypairStoreInstance = new keypairStore();
