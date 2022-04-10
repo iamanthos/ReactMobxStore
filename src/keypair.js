@@ -13,8 +13,7 @@ const Keypair = observer(() => {
     let selectedKeypair = [];
     keypairStoreInstance.pairArray.map((pair) => {
       if (pair.toggle) {
-        selectedKeypair = [...selectedKeypair, pair];
-        return selectedKeypair;
+        return [...selectedKeypair, pair];
       }
     });
     const a = {
